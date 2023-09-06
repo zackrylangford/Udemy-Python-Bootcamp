@@ -64,3 +64,31 @@ If you get an IndentationError, check that you are using the same number of spac
 ### While loops
 
 We then discussed and went through while loops
+
+while loops will continue to execute a block of code while some condition remains True.
+
+```python
+current_number = 1
+while current_number <= 5:
+    print(current_number)
+    current_number += 1
+```
+
+so: 
+
+while something_is_true:
+    do something
+
+You can check conditions by using negation phrasing as well. So: 
+
+while not something_is_true:
+    do something
+
+
+* for loops are better if you know how many times you want to loop through something
+
+* while loops are better if you don't know how many times you want to loop through something
+
+### infinite loops
+
+An infinite loop occurs when a loop never ends. If there's no way for the condition to become False, the loop will never stop running. You can stop an infinite loop by pressing CTRL-C, or by closing the window displaying the output.
