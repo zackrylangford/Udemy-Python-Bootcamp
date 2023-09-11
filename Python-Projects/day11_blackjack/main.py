@@ -26,7 +26,6 @@ def time_delay(num):
 
 def initial_deal():
     """Initial Cards are dealt"""
-    # Inital cards are dealt
     print(f"Dealing cards...")
     time_delay(1)
     deal_card("player", 2)
@@ -37,7 +36,7 @@ def initial_deal():
 
 def dealer_reveal():
     dealer_hand[0] = random.choice(cards)
-    dealer_total = calculate_score(dealer_hand) # Call calculate_score to possibly adjust total
+    dealer_total = calculate_score(dealer_hand)
     return f"Dealer hand: {dealer_hand} Dealer Total: {dealer_total}"
 
 
