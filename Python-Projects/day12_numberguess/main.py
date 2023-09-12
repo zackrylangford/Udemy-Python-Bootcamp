@@ -50,8 +50,6 @@ def play_game():
         play_again = input("You win!\nWould you like to play again? y or n\n")
         if play_again == "y":
             play_game()
-
-
 play_game()
 
 print("Thanks for playing, see you next time!")
