@@ -33,11 +33,11 @@ def play_game():
         if guessed_number < cpu_choice:
             print("Too low, guess again")
             guesses_remaining -= 1
-            print(guesses_remaining)
+            print(f"Guesses remaining: {guesses_remaining}")
         elif guessed_number > cpu_choice:
             print("Too high, guess again")
             guesses_remaining -= 1
-            print(guesses_remaining)
+            print(f"Guesses remaining: {guesses_remaining}")
         elif guessed_number == cpu_choice:
             print("You got it!")
             game_over = True
