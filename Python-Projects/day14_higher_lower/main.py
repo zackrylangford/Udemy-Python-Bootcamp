@@ -5,9 +5,15 @@ import random
 #printing the logo
 print(logo)
 
+def get_random_choice(exclude=None):
+    """Gets a random choice from data, excluding the provided entry if any."""
+    pool = [d for d in data if d != exclude]
+    return random.choice(pool)
+
 #initial setup 
-a = random.choice(data)
-b = random.choice(data)
+a = get_random_choice()
+b = get_random_choice(a)
+score = 0
 
 def format_name(entry):
     """Takes the dictionary entry and returns the name, description, country, and follower count"""
@@ -26,23 +32,26 @@ def correct_answer(a, b):
         return "b"
 
 # Main game function
-def game(a, b):
+def game(a, b, score):
     print(f"Choice A: " + format_name(a))
     print(vs)
     print(f"Choice B: " + format_name(b))
     answer = correct_answer(a,b)
+    print(answer)
     a = b
     # Ask the user for their guess
     user_guess = input("Who has more followers? Type 'A' or 'B'\n").lower()
 
     if user_guess == answer:
         print("Correct!")
-        new_b = random.choice(data)
-        game(a, new_b)
+        score += 1
+        print(f"Current score: {score}")
+        b = get_random_choice(a)
+        game(a, b, score)
 
     else: 
-        print("Incorrect.")
+        print(f"Incorrect.\nFinal score: {score}")
         # End game
 
 
-game(a, b)
+game(a, b, score)
