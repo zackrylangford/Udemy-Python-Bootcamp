@@ -2,13 +2,12 @@ from art import *
 from game_data import *
 import random
 
-
-ANSWER = ""
-
 #printing the logo
 print(logo)
 
-
+#initial setup 
+a = random.choice(data)
+b = random.choice(data)
 
 def format_name(entry):
     """Takes the dictionary entry and returns the name, description, country, and follower count"""
@@ -26,33 +25,24 @@ def correct_answer(a, b):
     else:
         return "b"
 
-def continue_game():
-    pass
-
 # Main game function
-def game():
-    #Inital game setup 
-    a = random.choice(data)
-    b = random.choice(data)
+def game(a, b):
     print(f"Choice A: " + format_name(a))
     print(vs)
     print(f"Choice B: " + format_name(b))
-
     answer = correct_answer(a,b)
-    print(f"Correct Answer hint: " + answer)
-    if answer == "b":
-        a = b
-
+    a = b
     # Ask the user for their guess
     user_guess = input("Who has more followers? Type 'A' or 'B'\n").lower()
 
     if user_guess == answer:
         print("Correct!")
-        game()
+        new_b = random.choice(data)
+        game(a, new_b)
 
     else: 
         print("Incorrect.")
         # End game
 
 
-game()
+game(a, b)
