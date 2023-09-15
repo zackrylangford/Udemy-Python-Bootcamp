@@ -16,6 +16,14 @@ def check_resources(order):
                 return False
     return "Enough resources"
 
+def make_coffee(order):
+    print(f"Dispensing {order} now, please enjoy responsibly!")
+    ingredients = MENU[order]["ingredients"]
+    for item, amount in ingredients.items():
+        if item in resources:
+            resources[item] -= amount
+            print(f"{item.capitalize()} remaining: {resources[item]}{resource_units[item]}")
+
 
 def process_coins():
     """Process the coins inserted by the user"""
@@ -29,16 +37,27 @@ def process_coins():
     return total
 
 
-def check_transaction(total, order):
-    pass
+def check_transaction(paid, order):
+    change_needed = paid - order
+    if change_needed >= 0:
+        print(f"Change returned: ${change_needed:.2f}")
+        resources['money'] += order
+        return True
+    else:
+        print("Sorry, that is not enough, money refunded.")
+        return False
 
-def update_resources():
-    pass
 
 
-def report():
-    for name, amount in resources.items():
-        print(f"{name.capitalize()}: {amount}{resource_units[name]}")
+def report(type):
+    if type == "report":
+        for name, amount in resources.items():
+            print(f"{name.capitalize()}: {amount}{resource_units[name]}")
+    else:
+        for name, amount in resources.items():
+            if name != "money":
+                print(f"{name.capitalize()}: {amount}{resource_units[name]}")
+
 
 
 
@@ -48,14 +67,17 @@ while coffee_machine_on:
         print("Shutting down")
         coffee_machine_on = False
     elif user_order == "report":
-        report()
+        report("report")
     elif user_order in MENU:
         print(f"You ordered: {user_order}")
         if check_resources(user_order) == False:
-            report()
+            report("ingredients")
         else:
             money_paid = (process_coins())
-            print(money_paid)
+            beverage_cost = MENU[user_order]["cost"]
+            if check_transaction(money_paid, beverage_cost):
+                print("Making drink now")
+                make_coffee(user_order)
     else:
         print("Please select a valid option")
 
