@@ -22,16 +22,26 @@ def make_coffee(order):
     for item, amount in ingredients.items():
         if item in resources:
             resources[item] -= amount
-            print(f"{item.capitalize()} remaining: {resources[item]}{resource_units[item]}")
+            # print(f"{item.capitalize()} remaining: {resources[item]}{resource_units[item]}")
 
+def get_integer(prompt):
+    """Get an integer input from the user, with error checking."""
+    while True:
+        try:
+            value = int(input(prompt))
+            if value < 0:
+                raise ValueError
+            return value
+        except ValueError:
+            print("Invalid input. Please enter a non-negative integer.")
 
 def process_coins():
     """Process the coins inserted by the user"""
     print("Please insert coins.")
-    quarters = int(input("How many quarters?: "))
-    dimes = int(input("How many dimes?: "))
-    nickles = int(input("How many nickles?: "))
-    pennies = int(input("How many pennies?: "))
+    quarters = get_integer("How many quarters?: ")
+    dimes = get_integer("How many dimes?: ")
+    nickles = get_integer("How many nickles?: ")
+    pennies = get_integer("How many pennies?: ")
 
     total = quarters * 0.25 + dimes * 0.10 + nickles * 0.05 + pennies * 0.01
     return total
