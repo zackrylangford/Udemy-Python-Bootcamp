@@ -4,27 +4,22 @@ coffee_machine_on = True
 
 
 def check_resources(order):
-    """Check if there are enough resources to make the order and return True if there are, False if not."""
     ingredients = MENU[order]["ingredients"]
     for item, amount in ingredients.items():
-        if item in resources:
-            if amount > resources[item]:
-                print(f"Sorry there is not enough {item}")
-                return False
+        if resources.get(item, 0) < amount:
+            print(f"Sorry, there is not enough {item}")
+            return False
     return True
 
 
 def make_coffee(order):
-    """Make the coffee and dispense it to the user and update the resources."""
     print(f"Dispensing {order} now, please enjoy responsibly!")
     ingredients = MENU[order]["ingredients"]
     for item, amount in ingredients.items():
-        if item in resources:
-            resources[item] -= amount
+        resources[item] -= amount
 
 
 def get_integer(prompt):
-    """Get an integer input from the user, with error checking."""
     while True:
         try:
             value = int(input(prompt))
@@ -36,7 +31,6 @@ def get_integer(prompt):
 
 
 def process_coins():
-    """Process the coins inserted by the user and return the total value."""
     print("Please insert coins.")
     quarters = get_integer("How many quarters?: ")
     dimes = get_integer("How many dimes?: ")
@@ -47,43 +41,37 @@ def process_coins():
     return total
 
 
-def check_transaction(paid, order):
-    change_needed = paid - order
+def check_transaction(paid, order_cost):
+    change_needed = paid - order_cost
     if change_needed >= 0:
         print(f"Change returned: ${change_needed:.2f}")
-        resources['money'] += order
+        resources['money'] += order_cost
         return True
     else:
         print("Sorry, that is not enough, money refunded.")
         return False
 
 
-def report(type):
-    if type == "report":
-        for name, amount in resources.items():
+def report(is_admin_report):
+    for name, amount in resources.items():
+        if is_admin_report or name != "money":
             print(f"{name.capitalize()}: {amount}{resource_units[name]}")
-    else:
-        for name, amount in resources.items():
-            if name != "money":
-                print(f"{name.capitalize()}: {amount}{resource_units[name]}")
 
 
 while coffee_machine_on:
     user_order = input("What would you like? (espresso/latte/cappuccino): ").lower()
+
     if user_order == "off":
         print("Shutting down")
         coffee_machine_on = False
     elif user_order == "report":
-        report("report")
+        report(True)
     elif user_order in MENU:
-        print(f"You ordered: {user_order}")
-        if not check_resources(user_order):
-            report("ingredients")
-        else:
-            money_paid = (process_coins())
-            beverage_cost = MENU[user_order]["cost"]
-            if check_transaction(money_paid, beverage_cost):
-                print("Making drink now")
+        if check_resources(user_order):
+            money_paid = process_coins()
+            if check_transaction(money_paid, MENU[user_order]["cost"]):
                 make_coffee(user_order)
+        else:
+            report(False)
     else:
         print("Please select a valid option")
