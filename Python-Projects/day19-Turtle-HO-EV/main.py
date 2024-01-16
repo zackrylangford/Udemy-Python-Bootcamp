@@ -1,5 +1,7 @@
 from turtle import *
 import random
+import time
+import turtle
 
 timmy = Turtle()
 timmy.color("red")
@@ -52,16 +54,28 @@ def race_reset():
     timmy.pendown()
     tommy.pendown()
     tummy.pendown()
+    prediction = place_your_bet()
+    race(start=True, prediction=prediction)
 
-def race(direction):
-    race_on = direction
+def place_your_bet():
+    prediction = screen.textinput("Place Your Bet", "Who do you think will win?")
+    return prediction
+
+def race(start, prediction):
+    race_on = start
     while race_on:
         for turtle in turtles:
             move_forwards(turtle)
             xcor = int(turtle.xcor())
             if xcor > 200:
                 race_on = False
-                print(f"{turtle.name} has won the race!")
+                winner = f"{turtle.name} has won the race!"
+                if prediction == turtle.name.lower():
+                    result = "You won!"
+                else:
+                    result = "You lost."
+                screen.title(f"{winner}-{result}")
+                race_reset()
 
 ## Key bindings for racing
             
