@@ -4,7 +4,7 @@
 - [x] TODO: Create the ball and make it move
 - [x] TODO: Detect collision with wall and bounce
 - [x] TODO: Detect collision with paddle
-- [ ] TODO: Detect when paddle misses
-- [ ] TODO: Keep score
-- [ ] TODO: Create a scoreboard
-- [ ] TODO: Game over
+- [x] TODO: Detect when paddle misses
+- [x] TODO: Keep score
+- [x] TODO: Create a scoreboard
+- [x] TODO: Game over
