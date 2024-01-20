@@ -1,0 +1,10 @@
+- [x] TODO: Create a screen
+- [x] TODO: Create and move a paddle
+- [x] TODO: Create another paddle
+- [ ] TODO: Create the ball and make it move
+- [ ] TODO: Detect collision with wall and bounce
+- [ ] TODO: Detect collision with paddle
+- [ ] TODO: Detect when paddle misses
+- [ ] TODO: Keep score
+- [ ] TODO: Create a scoreboard
+- [ ] TODO: Game over
