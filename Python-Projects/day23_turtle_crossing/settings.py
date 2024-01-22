@@ -1,8 +1,12 @@
 from turtle import *
+import random
 
-GAME_IS_ON = True
-GAME_UPDATE_INTERVAL = 40
+GAME_UPDATE_INTERVAL = 10
 PLAYER_SPEED = 20
+MIN_CAR_SPEED = 1
+MAX_CAR_SPEED = 4
+GAME_LEVEL = 1
+
 
 
 screen = Screen()
@@ -13,6 +17,5 @@ screen.tracer(0)
 
 def exit_game():
     screen.bye()
-
 
 
