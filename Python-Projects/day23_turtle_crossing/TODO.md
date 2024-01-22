@@ -1,6 +1,6 @@
-- [ ] Create a screen
-- [ ] Create a settings page to define all of the game settings
-- [ ] Create a turtle player that starts at the bottom of the screen and listen for the "Up" keypress to move the turtle north.
+- [x] Create a screen
+- [x] Create a settings page to define all of the game settings
+- [x] Create a turtle player that starts at the bottom of the screen and listen for the "Up" keypress to move the turtle north.
 - [ ] Create cars that are 20px high by 40px wide that are randomly generated along the y-axis and move to the left edge of the screen. No cars should be generated in the top and bottom 50px of the screen (think of it as a safe zone for our little turtle).
 - [ ] Detect when the turtle player collides with a car and stop the game if this happens.
 - [ ] Detect when the turtle player has reached the top edge of the screen (i.e., reached the FINISH_LINE_Y). When this happens, return the turtle to the starting position and increase the speed of the cars. Hint: think about creating an attribute and using the MOVE_INCREMENT to increase the car speed.

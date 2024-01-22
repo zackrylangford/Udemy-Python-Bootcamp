@@ -6,11 +6,14 @@ import settings
 
 # Place the player on the screen
 player_1 = Player()
-player_1.goto(0, -280)
+
 
 # Keyboard bindings
 screen.listen()
 screen.onkey(exit_game, "Escape")
+screen.onkey(player_1.go_up, "Up")
+screen.onkey(player_1.go_down, "Down")
+
 
 def main_game_loop():
     
