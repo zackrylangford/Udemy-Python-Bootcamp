@@ -31,6 +31,7 @@ while game_is_on:
         food.refresh()
         sammy.extend()
         scoreboard.increase_score()
+        scoreboard.update_high_score()
 
     # Detect collision with wall
     if sammy.head.xcor() > 280 or sammy.head.xcor() < -280 or sammy.head.ycor() > 280 or sammy.head.ycor() < -280:
