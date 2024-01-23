@@ -6,6 +6,7 @@ PLAYER_SPEED = 20
 MIN_CAR_SPEED = 1
 MAX_CAR_SPEED = 4
 GAME_LEVEL = 1
+HIGH_SCORE_FILE = "/Users/zackrylangford/Desktop/python-learning/Udemy-Python-Bootcamp/Python-Projects/day23_turtle_crossing/data.txt"
 
 
 
