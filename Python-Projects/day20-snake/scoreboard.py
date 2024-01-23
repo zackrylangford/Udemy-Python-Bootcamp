@@ -34,13 +34,17 @@ class Scoreboard(Turtle):
 
     def get_high_score(self):
         with open("Python-Projects/day20-snake/data.txt") as file:
-            return int(file.read())
+            high_score = int(file.read())
+            file.close()
+            return high_score
+
 
     def update_high_score(self):
         if self.score > self.high_score:
             self.high_score = self.score
             with open("Python-Projects/day20-snake/data.txt", mode="w") as file:
                 file.write(f"{self.high_score}")
+                file.close()
             self.clear()
             self.update_scoreboard()
         else:

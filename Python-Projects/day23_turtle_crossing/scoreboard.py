@@ -42,12 +42,15 @@ class Scoreboard(Turtle):
         if self.level > high_score:
             with open(settings.HIGH_SCORE_FILE, mode="w") as file:
                 file.write(str(self.level))
+                file.close()
             return True
         else:
+            file.close()
             return False
         
     def display_high_score(self):
         with open(settings.HIGH_SCORE_FILE, mode="r") as file:
             high_score = int(file.read())
-        self.goto(200, 270)  # Position for high score display
-        self.write(f"High Score: {high_score}", align="left", font=("Courier", 24, "normal"))
+            self.goto(200, 270)  # Position for high score display
+            self.write(f"High Score: {high_score}", align="left", font=("Courier", 24, "normal"))
+            file.close()
